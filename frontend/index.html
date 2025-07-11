@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="posApp">
+<head>
+  <title>Smart POS Dashboard</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="app.js"></script>
+  <script src="controllers/mainController.js"></script>
+</head>
+<body ng-controller="MainCtrl">
+  <h1>Smart POS Dashboard</h1>
+
+  <form ng-submit="addTransaction()">
+    <input type="text" ng-model="transaction.user" placeholder="User Name" required>
+    <input type="number" ng-model="transaction.amount" placeholder="Amount" required>
+    <button type="submit">Add Transaction</button>
+  </form>
+
+  <h3>All Transactions</h3>
+  <ul>
+    <li ng-repeat="txn in transactions">
+      {{txn.user}} - ₹{{txn.amount}} 
+      <span ng-if="txn.fraud" style="color:red;">🚨 Fraud Alert</span>
+    </li>
+  </ul>
+</body>
+</html>
